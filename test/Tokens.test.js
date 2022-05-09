@@ -24,7 +24,7 @@ describe("Tokens", () => {
         await tokens.deployed();
     });
 
-    it("Mints correct initial supply to owner.", async () => {
+    it("Mints correct initial supply of BlazeToken to owner.", async () => {
         const ownerBalance = await tokens.balanceOf(
             owner.address,
             0
@@ -44,20 +44,18 @@ describe("Tokens", () => {
         ).to.be.revertedWith("Tokens: You have already claimed your share of tokens.");
     });
 
-    it("Users can mint NFTs with copies between 1 and 5.", async () => {
-        await tokens.connect(buyer1).mintNFT(3);
+    it("Users can mint NFTs.", async () => {
+        await tokens.connect(buyer1).mintNFT();
         expect(await tokens.balanceOf(buyer1.address, 1))
-            .to.equal(3);
-
-        // Now, try to mint 0 or more than 5 copies.
-        expect(
-            tokens.connect(buyer2).mintNFT(0)
-        ).to.be.revertedWith("Tokens: Can mint copies between 1 and 5 only.!");
-
-        expect(
-            tokens.connect(buyer3).mintNFT(6)
-        ).to.be.revertedWith("Tokens: Can mint copies between 1 and 5 only.!");
+            .to.equal(1);
         
+        await tokens.connect(buyer2).mintNFT();
+        expect(await tokens.balanceOf(buyer2.address, 2))
+            .to.equal(1);
+
+        await tokens.connect(buyer3).mintNFT();
+        expect(await tokens.balanceOf(buyer3.address, 3))
+            .to.equal(1);
     });
 });
  
