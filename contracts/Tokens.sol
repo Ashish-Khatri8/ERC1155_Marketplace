@@ -30,13 +30,9 @@ contract Tokens is ERC1155 {
         hasClaimedTokens[msg.sender] = true;
     }
 
-    function mintNFT(uint256 _copies) external {
-        require(
-            _copies > 0 && _copies < 6,
-            "Tokens: Can mint copies between 1 and 5 only.!"
-        );
+    function mintNFT() external {
         _tokenIds.increment();
         uint256 newTokenId = _tokenIds.current();
-        _mint(msg.sender, newTokenId, _copies, "");
+        _mint(msg.sender, newTokenId, 1, "");
     }
 }
