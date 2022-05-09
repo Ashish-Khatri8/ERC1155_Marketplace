@@ -221,7 +221,7 @@ contract MarketPlace is Ownable, ReentrancyGuard, ERC1155Holder {
         require(
             tokensContract.isApprovedForAll(msg.sender, address(this)) &&
             tokensContract.balanceOf(msg.sender, blazeToken) >= nftListings[_tokenId].price,
-            "MarketPlace: Unsufficient token allowance."
+            "MarketPlace: Insufficient token allowance."
         );
     }
 }
