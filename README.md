@@ -18,7 +18,7 @@
 
 ### NFTs
 
-- Any address can interact with mintNFT() function to mint an NFT with incrementing token ids.
+- Any address can interact with mintNFT() function to mint a NFT with incrementing token ids.
 - Token IDs start with 1 and increment for next token(implemented using Counters.sol).
 - These NFT tokens can be listed for sale on the MarketPlace contract for a specific amount of BlazeTokens(TokenId: 0)
 
@@ -33,8 +33,11 @@
 - Only the contract owner can interact with the claimPlatformEarnings() function to collect the platform fees accumulated so far in the contract.
 
 - Before listing NFTs, user will need to give the MarketPlace contract approval for all ERC1155 tokens, by interacting with setApprovalForAll() function of Tokens.sol contract, where arguments to be passed are:
-    operator: address of MarketPlace contract
-    approved: true
+
+```shell
+operator: address of MarketPlace contract
+approved: true
+```
 
 - Contract Address: 0x03bBFf7C9912C0a1960a36B18fc38c7492B6EA30
 
