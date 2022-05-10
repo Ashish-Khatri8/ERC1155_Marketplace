@@ -11,6 +11,12 @@ async function main() {
     );
     await tokens.deployed();
     console.log("Tokens contract deployed at: ", tokens.address);
+
+    // Deploy the MarketPlace contract.
+    const MarketPlace = await ethers.getContractFactory("MarketPlace");
+    const marketPlace = await MarketPlace.deploy(tokens.address);
+    await marketPlace.deployed();
+    console.log("MarketPlace contract is deployed at: ", marketPlace.address);
 }
 
 main()
