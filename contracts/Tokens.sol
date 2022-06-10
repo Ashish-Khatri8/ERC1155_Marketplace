@@ -2,14 +2,11 @@
 pragma solidity >=0.8.4;
 
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
 
 
 contract Tokens is ERC1155 {
 
-    using Counters for Counters.Counter;
-    Counters.Counter private _tokenIds;
-
+    uint256 _tokenId;
     uint256 private constant BlazeToken = 0;
 
     mapping(address => bool) private hasClaimedTokens;
@@ -31,8 +28,7 @@ contract Tokens is ERC1155 {
     }
 
     function mintNFT() external {
-        _tokenIds.increment();
-        uint256 newTokenId = _tokenIds.current();
-        _mint(msg.sender, newTokenId, 1, "");
+        _tokenId += 1;
+        _mint(msg.sender, _tokenId, 1, "");
     }
 }
